@@ -47,6 +47,7 @@
                                                         NSForegroundColorAttributeName:[UIColor grayColor]
                                                         } forState:UIControlStateSelected];
     NSLog(@"xx到此一游！");
+    NSLog(@"许正李在此");
 }
 
 
