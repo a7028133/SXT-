@@ -46,6 +46,7 @@
                                                         NSFontAttributeName:[UIFont systemFontOfSize:12.0],
                                                         NSForegroundColorAttributeName:[UIColor grayColor]
                                                         } forState:UIControlStateSelected];
+    NSLog(@"xx到此一游！");
 }
 
 
