@@ -14,8 +14,9 @@
 @property(nonatomic,strong)UIImageView *topBackImageView; //第一个imageView，其上方登陆，注册按钮
 @property(nonatomic,strong)UIButton *loginBtn;
 @property(nonatomic,strong)UIButton *registerBtn;
-@property(nonatomic,strong)UIImageView *nextBackImageView; //第二个imageView，其上放收藏，意见，客服。。。
+//@property(nonatomic,strong)UIImageView *nextBackImageView; //第二个imageView，其上放收藏，意见，客服。。。
 
+@property(nonatomic,strong)UILabel *lineLab;
 @property(nonatomic,strong)UIButton *collectBtn;
 @property(nonatomic,strong)UIButton *suggestBtn;
 @property(nonatomic,strong)UIButton *aboutBtn;
@@ -31,6 +32,8 @@
         [self addSubview:self.topBackImageView];
         [self addSubview:self.loginBtn];
         [self addSubview:self.registerBtn];
+//        [self addSubview:self.nextBackImageView];
+        
     }
     return self;
 }
@@ -47,19 +50,24 @@
     
     [weakSelf.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.topBackImageView.mas_top).offset(55);
-        make.left.mas_equalTo(weakSelf.mas_left).offset(107);
         make.bottom.mas_equalTo(weakSelf.topBackImageView.mas_bottom).offset(-55);
+        
+        make.left.mas_equalTo(weakSelf.topBackImageView.mas_left).offset(100);
         make.right.mas_equalTo(weakSelf.registerBtn.mas_left).offset(-93);
-//        make.width.mas_equalTo(100);
     }];
     
     [weakSelf.registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.topBackImageView.mas_top).offset(55);
         make.bottom.mas_equalTo(weakSelf.topBackImageView.mas_bottom).offset(-55);
-        make.right.mas_equalTo(weakSelf.registerBtn.mas_right).offset(-107);
-        make.left.mas_equalTo(weakSelf.loginBtn.mas_right).offset(93);
+        
+//        make.left.mas_equalTo(weakSelf.loginBtn.mas_right).offset(93);
+        make.right.mas_equalTo(weakSelf.topBackImageView.mas_right).offset(-99);
+        
     }];
+    
+    
 }
+
 
 #pragma mark 
 #pragma mark 懒加载
@@ -92,5 +100,23 @@
         [_registerBtn setBackgroundColor:[UIColor clearColor]];
     }
     return _registerBtn;
+}
+
+-(UILabel *)lineLab
+{
+    if (!_lineLab) {
+        _lineLab = [[UILabel alloc]init];
+        [_lineLab setBackgroundColor:[UIColor grayColor]];
+    }
+    return _lineLab;
+}
+-(UIButton *)collectBtn
+{
+    if (!_collectBtn) {
+        _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_collectBtn setBackgroundColor:[UIColor whiteColor]];
+        
+    }
+    return _collectBtn;
 }
 @end

@@ -152,7 +152,7 @@
         make.left.mas_equalTo(weakSelf.mas_left).offset(15);
         make.height.mas_equalTo(14);
         make.top.mas_equalTo(weakSelf.mas_top).offset(11);
-        make.width.mas_equalTo(weakSelf.frame.size.width/2.0);
+        make.width.mas_equalTo(weakSelf.frame.size.width/2.0+20);
     }];
 }
 
@@ -281,6 +281,7 @@
         _topFlag = [[UILabel alloc]init];
         [_topFlag setText:@"请输入手机号码注册新用户"];
         [_topFlag setTextColor:RBG(102, 102, 102)];
+        _topFlag.textAlignment = NSTextAlignmentCenter ;
     }
     return _topFlag;
 }

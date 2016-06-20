@@ -31,6 +31,7 @@
         UINavigationController *navC = [[UINavigationController alloc]initWithRootViewController:VC];
         
         VC.navigationItem.title = dic[@"title"];
+        
         navC.tabBarItem.title = dic[@"title"];
         navC.tabBarItem.image = [UIImage imageNamed:dic[@"image"]];
         navC.tabBarItem.selectedImage = [UIImage imageNamed:dic[@"selectedImage"]];
@@ -46,8 +47,7 @@
                                                         NSFontAttributeName:[UIFont systemFontOfSize:12.0],
                                                         NSForegroundColorAttributeName:[UIColor grayColor]
                                                         } forState:UIControlStateSelected];
-    NSLog(@"xx到此一游！");
-    NSLog(@"许正李在此");
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed: @"nav_backImage" ] forBarMetrics:UIBarMetricsDefault];
 }
 
 
