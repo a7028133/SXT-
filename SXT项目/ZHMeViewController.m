@@ -10,6 +10,7 @@
 #import "ZHInputView.h"
 #import "ZHMeUIView.h"
 #import "MAsonry.h"
+#import "ZHTableViewCellModel.h"
 
 @interface ZHMeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UIImageView *bgImageView;
@@ -18,6 +19,7 @@
 @property(nonatomic,strong)UIButton *loginBtn;
 @property(nonatomic,strong)UIButton *registBtn;
 @property(nonatomic,strong)NSArray *arr;
+@property(nonatomic,strong)NSMutableArray *MutablArr;
 @end
 
 @implementation ZHMeViewController
@@ -25,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
+    
+    self.MutablArr = [NSMutableArray array];
     
     [self.view addSubview:self.bgImageView];
     [self.view addSubview:self.marginLab];
@@ -84,12 +88,25 @@
 #pragma mark 自定义方法
 -(void)loginBtnAction
 {
+    self.loginBtn.alpha=1.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.loginBtn.alpha=0.1;
+    } completion:^(BOOL finished) {
+        self.loginBtn.alpha=1.0;
+    }];
     
+    NSLog(@"登陆");
 }
 
 -(void)registBtnAction
 {
-    
+    self.registBtn.alpha=1.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.registBtn.alpha=0.1;
+    } completion:^(BOOL finished) {
+        self.registBtn.alpha=1.0;
+    }];
+    NSLog(@"注册");
 }
 
 #pragma mark    UITableViewDataSource
@@ -104,6 +121,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        
+        
+        
     }
     return cell;
 }
@@ -115,7 +135,7 @@
     if (!_bgImageView) {
         _bgImageView = [[UIImageView alloc]init];
         _bgImageView.image = [UIImage imageNamed:@"我的背景"];
-        
+        _bgImageView.userInteractionEnabled = YES ;
     }
     return  _bgImageView;
 }
@@ -136,6 +156,7 @@
         _myTableView.backgroundColor = RBG(245, 245, 245);
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
+        _myTableView.rowHeight = 44;
         
     }
     return _myTableView;
@@ -143,11 +164,12 @@
 
 -(UIButton *)loginBtn{
     if (!_loginBtn) {
-        _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _loginBtn = [[UIButton alloc]init];
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         _loginBtn.titleLabel.textColor = [UIColor whiteColor];
-        [_loginBtn addTarget:self action:@selector(loginBtnAction) forControlEvents:UIControlEventTouchUpOutside];
+        [_loginBtn addTarget:self action:@selector(loginBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_loginBtn addTarget:self action:@selector(loginBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginBtn;
 }
@@ -157,7 +179,8 @@
         _registBtn = [[UIButton alloc]init];
         [_registBtn setTitle:@"注册" forState:UIControlStateNormal];
         _registBtn.titleLabel.textColor = [UIColor whiteColor];
-        [_registBtn addTarget:self action:@selector(registBtnAction) forControlEvents:UIControlEventTouchUpOutside];
+//        _registBtn.backgroundColor = [UIColor redColor];
+        [_registBtn addTarget:self action:@selector(registBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registBtn;
 }
@@ -167,13 +190,29 @@
     if (!_arr) {
         _arr = [NSArray array];
         _arr = @[
-                  @{@"我的界面关于我们图标":@"关于我们"},
-                  @{@"我的界面客服热线图标":@"客服热线"},
-                  @{@"我的界面我的收藏图标":@"我的收藏"},
-                  @{@"我的界面我的优惠券图标":@"我的优惠券"},
-                  @{@"我的界面邀请好友图标":@"邀请好友,立刻赚钱"},
-                  @{@"我的界面意见反馈图标":@"意见反馈"}
+                  @{@"headImage":@"我的界面关于我们图标",
+                    @"title":@"关于我们",
+                    @"tailImage":@"下一步"},
+                  @{@"headImage":@"我的界面客服热线图标",
+                    @"title":@"客服热线",
+                    @"tailImage":@"客服电话号码"},
+                  @{@"headImage":@"",
+                    @"title":@"我的收藏",
+                    @"tailImage":@"下一步"},
+                  @{@"headImage":@"我的界面我的优惠券图标",
+                    @"title":@"我的优惠券",
+                    @"tailImage":@"下一步"},
+                  @{@"headImage":@"我的界面邀请好友图标",
+                    @"title":@"邀请好友,立刻赚钱",
+                    @"tailImage":@"下一步"},
+                  @{@"headImage":@"我的界面意见反馈图标",
+                    @"title":@"意见反馈",
+                    @"tailImage":@"下一步"},
                  ];
+        for (NSDictionary *dic in _arr) {
+            ZHTableViewCellModel *model = [ZHTableViewCellModel modelWithDictionary:dic];
+            [self.MutablArr addObject:model];
+        }
     }
     return _arr;
 }

@@ -24,6 +24,10 @@
 		0458FFCC1D124BE10001BFED /* ZHCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFCB1D124BE10001BFED /* ZHCartViewController.m */; };
 		0458FFCF1D124BF00001BFED /* ZHSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFCE1D124BF00001BFED /* ZHSaleViewController.m */; };
 		0458FFD21D124C0E0001BFED /* ZHCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */; };
+		04CCB4F01D18EAAF00C77A96 /* ZHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */; };
+		04CCB4F31D18EB0300C77A96 /* ZHTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB4F21D18EB0300C77A96 /* ZHTableViewCellModel.m */; };
+		04CCB4F51D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */; };
+		04CCB4F71D1911B500C77A96 /* 客服电话号码.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CCB4F61D1911B500C77A96 /* 客服电话号码.png */; };
 		A5C73E31FC2EDDA3A6A29B51 /* libPods-SXT项目.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA60B1A4779D6FC805822894 /* libPods-SXT项目.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +83,12 @@
 		0458FFCE1D124BF00001BFED /* ZHSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSaleViewController.m; sourceTree = "<group>"; };
 		0458FFD01D124C0E0001BFED /* ZHCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCategoryViewController.h; sourceTree = "<group>"; };
 		0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCategoryViewController.m; sourceTree = "<group>"; };
+		04CCB4EE1D18EAAF00C77A96 /* ZHTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTableViewCell.h; sourceTree = "<group>"; };
+		04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTableViewCell.m; sourceTree = "<group>"; };
+		04CCB4F11D18EB0300C77A96 /* ZHTableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTableViewCellModel.h; sourceTree = "<group>"; };
+		04CCB4F21D18EB0300C77A96 /* ZHTableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTableViewCellModel.m; sourceTree = "<group>"; };
+		04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "屏幕快照 2016-06-21 下午2.06.44.png"; sourceTree = "<group>"; };
+		04CCB4F61D1911B500C77A96 /* 客服电话号码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "客服电话号码.png"; sourceTree = "<group>"; };
 		79ECF6C17D6D69A20E6F12B2 /* Pods-SXT项目.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SXT项目.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SXT项目/Pods-SXT项目.debug.xcconfig"; sourceTree = "<group>"; };
 		C181B0641C9D38E25E6FD223 /* Pods-SXT项目.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SXT项目.release.xcconfig"; path = "Pods/Target Support Files/Pods-SXT项目/Pods-SXT项目.release.xcconfig"; sourceTree = "<group>"; };
 		EA60B1A4779D6FC805822894 /* libPods-SXT项目.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SXT项目.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,15 +142,6 @@
 			name = "New Group1";
 			sourceTree = "<group>";
 		};
-		041859EC1D128E98006F670F /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-				041859E21D1279CC006F670F /* PrefixHeader.pch */,
-				0458FFC21D123C6C0001BFED /* TabBar List.plist */,
-			);
-			name = Tool;
-			sourceTree = "<group>";
-		};
 		0458FE121D1235CE0001BFED = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +149,7 @@
 				0458FE3A1D1235CF0001BFED /* SXT项目Tests */,
 				0458FE451D1235CF0001BFED /* SXT项目UITests */,
 				0458FE1C1D1235CF0001BFED /* Products */,
+				04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */,
 				17ABB8D8033A17484168328E /* Pods */,
 				1461DC1FE11489DA3DA02328 /* Frameworks */,
 			);
@@ -166,23 +168,15 @@
 		0458FE1D1D1235CF0001BFED /* SXT项目 */ = {
 			isa = PBXGroup;
 			children = (
+				04CCB4ED1D18E1E800C77A96 /* Other */,
+				04CCB4E81D18E19800C77A96 /* Sale-特卖 */,
+				04CCB4E91D18E1A600C77A96 /* category-分类 */,
+				04CCB4E71D18E18B00C77A96 /* Cart-购物车 */,
+				04CCB4E61D18E17F00C77A96 /* Me-我的 */,
 				041859E31D12800F006F670F /* BasetabBar */,
-				0458FE211D1235CF0001BFED /* AppDelegate.h */,
-				0458FE221D1235CF0001BFED /* AppDelegate.m */,
 				0458FFC41D1244640001BFED /* ZHBaseTabBarController.h */,
 				0458FFC51D1244640001BFED /* ZHBaseTabBarController.m */,
-				0458FFC71D124BBF0001BFED /* ZHMeViewController.h */,
-				0458FFC81D124BBF0001BFED /* ZHMeViewController.m */,
-				0458FFCA1D124BE10001BFED /* ZHCartViewController.h */,
-				0458FFCB1D124BE10001BFED /* ZHCartViewController.m */,
-				0458FFCD1D124BF00001BFED /* ZHSaleViewController.h */,
-				0458FFCE1D124BF00001BFED /* ZHSaleViewController.m */,
-				0458FFD01D124C0E0001BFED /* ZHCategoryViewController.h */,
-				0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */,
-				041859EC1D128E98006F670F /* Tool */,
 				041859E41D128038006F670F /* New Group1 */,
-				0458FE2D1D1235CF0001BFED /* Assets.xcassets */,
-				0458FE1E1D1235CF0001BFED /* Supporting Files */,
 			);
 			path = "SXT项目";
 			sourceTree = "<group>";
@@ -214,6 +208,84 @@
 				0458FE481D1235CF0001BFED /* Info.plist */,
 			);
 			path = "SXT项目UITests";
+			sourceTree = "<group>";
+		};
+		04CCB4E61D18E17F00C77A96 /* Me-我的 */ = {
+			isa = PBXGroup;
+			children = (
+				04CCB4EC1D18E1D000C77A96 /* Model */,
+				04CCB4EB1D18E1C900C77A96 /* UIView */,
+				04CCB4EA1D18E1C200C77A96 /* Controller */,
+				04CCB4EE1D18EAAF00C77A96 /* ZHTableViewCell.h */,
+				04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */,
+			);
+			name = "Me-我的";
+			sourceTree = "<group>";
+		};
+		04CCB4E71D18E18B00C77A96 /* Cart-购物车 */ = {
+			isa = PBXGroup;
+			children = (
+				0458FFCA1D124BE10001BFED /* ZHCartViewController.h */,
+				0458FFCB1D124BE10001BFED /* ZHCartViewController.m */,
+			);
+			name = "Cart-购物车";
+			sourceTree = "<group>";
+		};
+		04CCB4E81D18E19800C77A96 /* Sale-特卖 */ = {
+			isa = PBXGroup;
+			children = (
+				0458FFCD1D124BF00001BFED /* ZHSaleViewController.h */,
+				0458FFCE1D124BF00001BFED /* ZHSaleViewController.m */,
+			);
+			name = "Sale-特卖";
+			sourceTree = "<group>";
+		};
+		04CCB4E91D18E1A600C77A96 /* category-分类 */ = {
+			isa = PBXGroup;
+			children = (
+				0458FFD01D124C0E0001BFED /* ZHCategoryViewController.h */,
+				0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */,
+			);
+			name = "category-分类";
+			sourceTree = "<group>";
+		};
+		04CCB4EA1D18E1C200C77A96 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0458FFC71D124BBF0001BFED /* ZHMeViewController.h */,
+				0458FFC81D124BBF0001BFED /* ZHMeViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		04CCB4EB1D18E1C900C77A96 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UIView;
+			sourceTree = "<group>";
+		};
+		04CCB4EC1D18E1D000C77A96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04CCB4F11D18EB0300C77A96 /* ZHTableViewCellModel.h */,
+				04CCB4F21D18EB0300C77A96 /* ZHTableViewCellModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		04CCB4ED1D18E1E800C77A96 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				0458FE211D1235CF0001BFED /* AppDelegate.h */,
+				0458FE221D1235CF0001BFED /* AppDelegate.m */,
+				0458FE1E1D1235CF0001BFED /* Supporting Files */,
+				0458FE2D1D1235CF0001BFED /* Assets.xcassets */,
+				04CCB4F61D1911B500C77A96 /* 客服电话号码.png */,
+				041859E21D1279CC006F670F /* PrefixHeader.pch */,
+				0458FFC21D123C6C0001BFED /* TabBar List.plist */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		1461DC1FE11489DA3DA02328 /* Frameworks */ = {
@@ -340,7 +412,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CCB4F71D1911B500C77A96 /* 客服电话号码.png in Resources */,
 				0458FE311D1235CF0001BFED /* LaunchScreen.storyboard in Resources */,
+				04CCB4F51D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png in Resources */,
 				0458FE2E1D1235CF0001BFED /* Assets.xcassets in Resources */,
 				0458FFC31D123C6C0001BFED /* TabBar List.plist in Resources */,
 			);
@@ -418,6 +492,8 @@
 				0458FFCF1D124BF00001BFED /* ZHSaleViewController.m in Sources */,
 				041859E71D128064006F670F /* ZHMasonryViewController.m in Sources */,
 				0458FFC61D1244640001BFED /* ZHBaseTabBarController.m in Sources */,
+				04CCB4F31D18EB0300C77A96 /* ZHTableViewCellModel.m in Sources */,
+				04CCB4F01D18EAAF00C77A96 /* ZHTableViewCell.m in Sources */,
 				041859EA1D1280FA006F670F /* ZHInputView.m in Sources */,
 				041859F21D12E053006F670F /* ZHMeUIView.m in Sources */,
 				041859EF1D12D930006F670F /* ZHRegister.m in Sources */,
