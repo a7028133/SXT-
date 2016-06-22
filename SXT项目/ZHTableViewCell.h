@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZHTableViewCellModel.h"
+
 
 @interface ZHTableViewCell : UITableViewCell
 //cell的初始化入口
 +(instancetype)cellInTableView:(UITableView *)tableView
                    atIndexPath:(NSIndexPath *)indexPath
-                      withData:(ZHTableViewCellModel *)data;
+                      withDic:(NSDictionary *)dic;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "ZHCartViewController.h"
-#import "ZHRegister.h"
 @interface ZHCartViewController ()
 
 @end
@@ -19,9 +18,6 @@
     
     self.view.backgroundColor = [UIColor greenColor];
     
-    ZHRegister *registerVC = [[ZHRegister alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-108)];
-    [registerVC setBackgroundColor:RBG(245, 245, 245)];
-    [self.view addSubview:registerVC];
 }
 
 - (void)didReceiveMemoryWarning {

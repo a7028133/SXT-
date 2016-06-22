@@ -7,10 +7,10 @@
 //
 
 #import "ZHMeViewController.h"
-#import "ZHInputView.h"
-#import "ZHMeUIView.h"
 #import "MAsonry.h"
-#import "ZHTableViewCellModel.h"
+#import "ZHTableViewCell.h"
+#import "ZHregisterVC.h"
+#import "ZHLonginVC.h"
 
 @interface ZHMeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UIImageView *bgImageView;
@@ -29,13 +29,19 @@
     self.view.backgroundColor = [UIColor grayColor];
     
     self.MutablArr = [NSMutableArray array];
+    for (NSDictionary *dic in self.arr) {
+        [self.MutablArr addObject:dic];
+    }
     
     [self.view addSubview:self.bgImageView];
     [self.view addSubview:self.marginLab];
     [self.view addSubview:self.myTableView];
-
+    
     [self.bgImageView addSubview:self.loginBtn];
     [self.bgImageView addSubview:self.registBtn];
+    
+    
+    
     [self makeConstraints];
     
 }
@@ -55,6 +61,20 @@
         make.height.mas_equalTo(127);
     }];
     
+    [weakSelf.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.bgImageView.mas_top).offset(55);
+        make.bottom.equalTo(weakSelf.bgImageView.mas_bottom).offset(-55);
+        make.left.equalTo(weakSelf.bgImageView.mas_left).offset(107);
+        make.width.equalTo(@40);
+    }];
+    
+    [weakSelf.registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.bgImageView.mas_top).offset(55);
+        make.bottom.equalTo(weakSelf.bgImageView.mas_bottom).offset(-55);
+        make.right.equalTo(weakSelf.bgImageView.mas_right).offset(-107);
+        make.width.equalTo(@40);
+    }];
+    
     [weakSelf.marginLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.bgImageView.mas_bottom);
         make.right.mas_equalTo(weakSelf.view.mas_right);
@@ -70,19 +90,7 @@
         make.bottom.mas_equalTo(weakSelf.view.mas_bottom).offset(20);
     }];
     
-    [weakSelf.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.bgImageView.mas_top).offset(55);
-        make.bottom.equalTo(weakSelf.bgImageView.mas_bottom).offset(-55);
-        make.left.equalTo(weakSelf.bgImageView.mas_left).offset(107);
-        make.width.equalTo(@40);
-    }];
     
-    [weakSelf.registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.bgImageView.mas_top).offset(55);
-        make.bottom.equalTo(weakSelf.bgImageView.mas_bottom).offset(-55);
-        make.right.equalTo(weakSelf.bgImageView.mas_right).offset(-107);
-        make.width.equalTo(@40);
-    }];
 }
 
 #pragma mark 自定义方法
@@ -95,7 +103,8 @@
         self.loginBtn.alpha=1.0;
     }];
     
-    NSLog(@"登陆");
+    ZHLonginVC *logVC = [[ZHLonginVC alloc]init];
+    [self.navigationController pushViewController:logVC animated:YES];
 }
 
 -(void)registBtnAction
@@ -106,7 +115,10 @@
     } completion:^(BOOL finished) {
         self.registBtn.alpha=1.0;
     }];
-    NSLog(@"注册");
+    
+    ZHregisterVC *reVC = [[ZHregisterVC alloc]init];
+    [self.navigationController pushViewController:reVC animated:YES];
+    
 }
 
 #pragma mark    UITableViewDataSource
@@ -117,14 +129,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"ID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        
-        
-        
-    }
+    ZHTableViewCell *cell = [ZHTableViewCell cellInTableView:tableView atIndexPath:indexPath withDic:self.MutablArr[indexPath.row]];
+    
     return cell;
 }
 
@@ -169,7 +175,6 @@
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         _loginBtn.titleLabel.textColor = [UIColor whiteColor];
         [_loginBtn addTarget:self action:@selector(loginBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//        [_loginBtn addTarget:self action:@selector(loginBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginBtn;
 }
@@ -179,7 +184,6 @@
         _registBtn = [[UIButton alloc]init];
         [_registBtn setTitle:@"注册" forState:UIControlStateNormal];
         _registBtn.titleLabel.textColor = [UIColor whiteColor];
-//        _registBtn.backgroundColor = [UIColor redColor];
         [_registBtn addTarget:self action:@selector(registBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registBtn;
@@ -190,30 +194,38 @@
     if (!_arr) {
         _arr = [NSArray array];
         _arr = @[
+                 @{@"headImage":@"我的界面我的收藏图标",
+                   @"title":@"我的收藏",
+                   @"tailImage":@"下一步"},
+                 @{@"headImage":@"我的界面意见反馈图标",
+                   @"title":@"意见反馈",
+                   @"tailImage":@"下一步"},
                   @{@"headImage":@"我的界面关于我们图标",
                     @"title":@"关于我们",
                     @"tailImage":@"下一步"},
                   @{@"headImage":@"我的界面客服热线图标",
                     @"title":@"客服热线",
                     @"tailImage":@"客服电话号码"},
-                  @{@"headImage":@"",
-                    @"title":@"我的收藏",
-                    @"tailImage":@"下一步"},
                   @{@"headImage":@"我的界面我的优惠券图标",
                     @"title":@"我的优惠券",
                     @"tailImage":@"下一步"},
                   @{@"headImage":@"我的界面邀请好友图标",
                     @"title":@"邀请好友,立刻赚钱",
                     @"tailImage":@"下一步"},
-                  @{@"headImage":@"我的界面意见反馈图标",
-                    @"title":@"意见反馈",
-                    @"tailImage":@"下一步"},
+                 
                  ];
-        for (NSDictionary *dic in _arr) {
-            ZHTableViewCellModel *model = [ZHTableViewCellModel modelWithDictionary:dic];
-            [self.MutablArr addObject:model];
-        }
+        
     }
     return _arr;
 }
+
+-(NSMutableArray *)MutablArr
+{
+    if (!_MutablArr) {
+        _MutablArr = [NSMutableArray arrayWithCapacity:6];
+        
+    }
+    return _MutablArr;
+}
+
 @end
