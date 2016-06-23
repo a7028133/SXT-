@@ -8,6 +8,11 @@
 
 #import "ZHLonginVC.h"
 #import "ZHregisterVC.h"
+#import "ZHLoginRequestVC.h"
+#import "ZHTestPhoneNum.h"
+#import "ZHMineViewController.h"
+
+#define URL_PATH @"http://123.57.141.249:8080/beautalk/appMember/appRegistraZon.do"
 
 @interface ZHLonginVC ()
 @property(nonatomic,strong)UILabel *backLael;
@@ -141,14 +146,61 @@
     }];
 }
 #pragma mark 自定义方法
+
+//去注册按钮事件
 -(void)registerBtnAction
 {
-     ZHregisterVC *reVC = [[ZHregisterVC alloc]init];
+    ZHregisterVC *reVC = [[ZHregisterVC alloc]init];
     [self.navigationController pushViewController:reVC animated:YES];
 }
 
+//登陆按钮事件
 -(void)loginBtnAction
 {
+    //URL字符串
+    NSString *strBaseURL = @"http://123.57.141.249:8080/beautalk/appMember/appLogin.do";
+    NSString *strURL = [NSString stringWithFormat:@"%@?LoginName=%@&Lpassword=%@",strBaseURL,self.nameText.text,self.passText.text];
+    //1.创建URL  (stringByAddingPercentEscapesUsingEncoding 将字符串中的中文进行编码，因为URL不支持中文和某些特殊字符)
+//    NSURL *url = [NSURL URLWithString:[strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    __weak typeof (self) weakSelf = self;
+    [ZHLoginRequestVC requestGETWithURL:strURL withParams:nil withSucess:^(NSDictionary *dic) {
+        NSLog(@"%@",dic);
+        
+//
+        [[NSUserDefaults standardUserDefaults]setObject:dic[@"ErrorMessage"] forKey:@"ErrorMessage"];
+        [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberId"] forKey:@"MemberId"];
+        [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberLvl"] forKey:@"MemberLvl"];
+        [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberName"] forKey:@"MemberName"];
+        [[NSUserDefaults standardUserDefaults]setObject:dic[@"result"] forKey:@"result"];
+//        if (_loginReturn) {
+//            _loginReturn();
+//        }
+        
+        //取
+//        NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"ErrorMessage"];
+        NSArray * array  =    weakSelf.navigationController.viewControllers ;
+        NSLog(@"%@" ,array[0]) ;
+//        for (UIViewController * vc  in array) {
+//            
+//           if (  [NSStringFromClass(vc) isEqualToString:@"ZHMineViewController"] )
+//           {
+//               NSLog(@"%@" ,vc) ;
+//           }
+//            
+//        }
+        //请求完数据，跳回到我的界面
+//        ZHMineViewController *vc = [[ZHMineViewController alloc]init];
+      //  [self.navigationController pop];
+        self.block() ;
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        
+    } withFail:^(NSError *error) {
+        if(error)
+        {
+            NSLog(@"error:%@",error.localizedDescription);
+        }
+    }];
     
 }
 
@@ -170,7 +222,7 @@
         _nameText = [[UITextField alloc]init];
         _nameText.borderStyle = UITextBorderStyleNone;
         [_nameText setPlaceholder:@"请输入手机号码"];
-        _nameText.keyboardType = UIKeyboardTypePhonePad;
+        _nameText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         _nameText.clearButtonMode = UITextFieldViewModeAlways;
         //        [_nameText ];
     }

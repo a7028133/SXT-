@@ -7,6 +7,8 @@
 //
 
 #import "ZHBaseViewController.h"
+#import "AFNetworking.h"
+#import "SVProgressHUD.h"
 
 @implementation ZHBaseViewController
 +(void)requestGETWithURL:(NSString *)url
@@ -14,14 +16,30 @@
               withSucess:(SecussBlock)suc
                 withFail:(FailBlock)fail
 {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [SVProgressHUD show];
+     
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     
+    [manager GET:url parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [SVProgressHUD dismiss];
+        suc(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        fail(error);
+    }];
 }
 
-+(void)requestGETPOSTURL:(NSString *)url
++(void)requestPOSTWithURL:(NSString *)url
               withParams:(NSDictionary *)dic
               withSucess:(SecussBlock)suc
                 withFail:(FailBlock)fail
 {
-    
+    AFHTTPSessionManager *manager  = [AFHTTPSessionManager manager];
+    [manager POST:url parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        suc(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        fail(error);
+    }];
 }
 @end

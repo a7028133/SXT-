@@ -9,13 +9,14 @@
 #import "ZHregisterVC.h"
 #import "ZHLonginVC.h"
 #import "UMSocial.h"
+#import "ZHTestPhoneNum.h"
 
 @interface ZHregisterVC()
 @property(nonatomic,strong)UILabel *backLael;
 @property(nonatomic,strong)UITextField *nameText;
 @property(nonatomic,strong)UITextField *passText;
 @property(nonatomic,strong)UILabel *lineLabel;
-@property(nonatomic,strong)UIButton *loginBtn;
+@property(nonatomic,strong)UIButton *nextBtn;
 @property(nonatomic,strong)UIButton *registerBtn;
 @property(nonatomic,strong)UILabel *lineLab1;
 @property(nonatomic,strong)UILabel *quickLoginLab;
@@ -40,7 +41,7 @@
     [self.view addSubview:self.nameText];
     [self.view addSubview:self.lineLabel];
     [self.view addSubview:self.passText];
-    [self.view addSubview:self.loginBtn];
+    [self.view addSubview:self.nextBtn];
     [self.view addSubview:self.registerBtn];
     
     [self.view addSubview:self.quickLoginLab];
@@ -87,7 +88,7 @@
         make.height.mas_equalTo(44);
     }];
     
-    [weakSelf.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [weakSelf.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.passText.mas_bottom).offset(15);
         make.left.mas_equalTo(weakSelf.backLael.mas_left).offset(16);
         make.right.mas_equalTo(weakSelf.backLael.mas_right).offset(-16);
@@ -95,7 +96,7 @@
     }];
     
     [weakSelf.registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.loginBtn.mas_bottom).offset(27);
+        make.top.mas_equalTo(weakSelf.nextBtn.mas_bottom).offset(27);
         make.width.mas_equalTo(92);
         make.right.mas_equalTo(weakSelf.backLael.mas_right).offset(-15);
         make.height.mas_equalTo(16);
@@ -103,9 +104,9 @@
     
     //一键登陆
     [weakSelf.quickLoginLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.loginBtn.mas_bottom).offset(52);
+        make.top.mas_equalTo(weakSelf.nextBtn.mas_bottom).offset(52);
         make.width.mas_equalTo(80);
-        make.centerX.mas_equalTo(weakSelf.loginBtn.mas_centerX);
+        make.centerX.mas_equalTo(weakSelf.nextBtn.mas_centerX);
         make.height.mas_equalTo(30);
     }];
     
@@ -128,7 +129,7 @@
     [weakSelf.weixinBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(weakSelf.quickLoginLab.mas_bottom).offset(20);
-        make.centerX.mas_equalTo(weakSelf.loginBtn.mas_centerX);
+        make.centerX.mas_equalTo(weakSelf.nextBtn.mas_centerX);
         make.height.mas_equalTo(45);
         make.width.mas_equalTo(45);
     }];
@@ -158,7 +159,13 @@
     }];
 }
 
--(void)registerBtnAction
+-(void)nextBtnAction
+{
+    ZHTestPhoneNum *testPhoneVC = [[ZHTestPhoneNum alloc]init];
+    [self.navigationController pushViewController:testPhoneVC animated:YES];
+}
+
+-(void)loginBtnAction
 {
     ZHLonginVC *logVC = [[ZHLonginVC alloc]init];
     [self.navigationController pushViewController:logVC animated:YES];
@@ -198,7 +205,7 @@
         _nameText = [[UITextField alloc]init];
         _nameText.borderStyle = UITextBorderStyleNone;
         [_nameText setPlaceholder:@"请输入手机号码"];
-        _nameText.keyboardType = UIKeyboardTypePhonePad;
+        _nameText.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         _nameText.clearButtonMode = UITextFieldViewModeAlways;
         //        [_nameText ];
     }
@@ -224,19 +231,20 @@
     return _lineLabel;
 }
 
--(UIButton *)loginBtn
+-(UIButton *)nextBtn
 {
-    if (!_loginBtn) {
-        _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_loginBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    if (!_nextBtn) {
+        _nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
         
-        [_loginBtn setBackgroundColor:RBG(234,234, 234)];
-        [_loginBtn setTintColor:RBG(153,153,153)];
-        _loginBtn.layer.cornerRadius = 5;
-        _loginBtn.layer.masksToBounds = YES;
+        [_nextBtn setBackgroundColor:RBG(234,234, 234)];
+        [_nextBtn setTintColor:RBG(153,153,153)];
+        [_nextBtn addTarget:self action:@selector(nextBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _nextBtn.layer.cornerRadius = 5;
+        _nextBtn.layer.masksToBounds = YES;
         
     }
-    return _loginBtn;
+    return _nextBtn;
 }
 -(UIButton *)registerBtn
 {
@@ -245,7 +253,7 @@
         [_registerBtn setTitle:@"去登陆" forState:UIControlStateNormal];
         [_registerBtn setTintColor:RBG(40, 181, 244)];
         [_registerBtn setBackgroundColor:RBG(245, 245, 245)];
-        [_registerBtn addTarget:self action:@selector(registerBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_registerBtn addTarget:self action:@selector(loginBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerBtn;
 }

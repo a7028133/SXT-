@@ -15,9 +15,9 @@
 		0458FE471D1235CF0001BFED /* SXT__UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FE461D1235CF0001BFED /* SXT__UITests.m */; };
 		0458FFC31D123C6C0001BFED /* TabBar List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0458FFC21D123C6C0001BFED /* TabBar List.plist */; };
 		0458FFC61D1244640001BFED /* ZHBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFC51D1244640001BFED /* ZHBaseTabBarController.m */; };
-		0458FFC91D124BBF0001BFED /* ZHMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFC81D124BBF0001BFED /* ZHMeViewController.m */; };
 		0458FFCC1D124BE10001BFED /* ZHCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFCB1D124BE10001BFED /* ZHCartViewController.m */; };
 		0458FFD21D124C0E0001BFED /* ZHCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */; };
+		047E55AF1D1AE18700352D27 /* 牛.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 047E55AE1D1AE18700352D27 /* 牛.jpg */; };
 		04CCB4F01D18EAAF00C77A96 /* ZHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */; };
 		04CCB4F51D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */; };
 		04CCB5CB1D1924BD00C77A96 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04CCB4FA1D1924BB00C77A96 /* UMSocialLocalizable.strings */; };
@@ -54,6 +54,9 @@
 		04CCB66F1D197F0500C77A96 /* ZHLonginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB66E1D197F0500C77A96 /* ZHLonginVC.m */; };
 		04CCB6751D1A2D6100C77A96 /* ZHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB6741D1A2D6100C77A96 /* ZHBaseViewController.m */; };
 		04CCB6781D1A2E4000C77A96 /* ZHSaleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB6771D1A2E4000C77A96 /* ZHSaleVC.m */; };
+		04CCB67B1D1A378200C77A96 /* ZHMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB67A1D1A378200C77A96 /* ZHMineViewController.m */; };
+		04CCB67E1D1A38F600C77A96 /* ZHLoginRequestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB67D1D1A38F600C77A96 /* ZHLoginRequestVC.m */; };
+		04CCB6811D1A85BA00C77A96 /* ZHTestPhoneNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB6801D1A85BA00C77A96 /* ZHTestPhoneNum.m */; };
 		A5C73E31FC2EDDA3A6A29B51 /* libPods-SXT项目.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA60B1A4779D6FC805822894 /* libPods-SXT项目.a */; };
 /* End PBXBuildFile section */
 
@@ -92,12 +95,11 @@
 		0458FFC21D123C6C0001BFED /* TabBar List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TabBar List.plist"; sourceTree = "<group>"; };
 		0458FFC41D1244640001BFED /* ZHBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBaseTabBarController.h; sourceTree = "<group>"; };
 		0458FFC51D1244640001BFED /* ZHBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBaseTabBarController.m; sourceTree = "<group>"; };
-		0458FFC71D124BBF0001BFED /* ZHMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMeViewController.h; sourceTree = "<group>"; };
-		0458FFC81D124BBF0001BFED /* ZHMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMeViewController.m; sourceTree = "<group>"; };
 		0458FFCA1D124BE10001BFED /* ZHCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCartViewController.h; sourceTree = "<group>"; };
 		0458FFCB1D124BE10001BFED /* ZHCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCartViewController.m; sourceTree = "<group>"; };
 		0458FFD01D124C0E0001BFED /* ZHCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCategoryViewController.h; sourceTree = "<group>"; };
 		0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCategoryViewController.m; sourceTree = "<group>"; };
+		047E55AE1D1AE18700352D27 /* 牛.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "牛.jpg"; sourceTree = "<group>"; };
 		04CCB4EE1D18EAAF00C77A96 /* ZHTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTableViewCell.h; sourceTree = "<group>"; };
 		04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTableViewCell.m; sourceTree = "<group>"; };
 		04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "屏幕快照 2016-06-21 下午2.06.44.png"; sourceTree = "<group>"; };
@@ -168,6 +170,12 @@
 		04CCB6741D1A2D6100C77A96 /* ZHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBaseViewController.m; sourceTree = "<group>"; };
 		04CCB6761D1A2E4000C77A96 /* ZHSaleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSaleVC.h; sourceTree = "<group>"; };
 		04CCB6771D1A2E4000C77A96 /* ZHSaleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSaleVC.m; sourceTree = "<group>"; };
+		04CCB6791D1A378200C77A96 /* ZHMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMineViewController.h; sourceTree = "<group>"; };
+		04CCB67A1D1A378200C77A96 /* ZHMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMineViewController.m; sourceTree = "<group>"; };
+		04CCB67C1D1A38F600C77A96 /* ZHLoginRequestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLoginRequestVC.h; sourceTree = "<group>"; };
+		04CCB67D1D1A38F600C77A96 /* ZHLoginRequestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLoginRequestVC.m; sourceTree = "<group>"; };
+		04CCB67F1D1A85BA00C77A96 /* ZHTestPhoneNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTestPhoneNum.h; sourceTree = "<group>"; };
+		04CCB6801D1A85BA00C77A96 /* ZHTestPhoneNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTestPhoneNum.m; sourceTree = "<group>"; };
 		79ECF6C17D6D69A20E6F12B2 /* Pods-SXT项目.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SXT项目.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SXT项目/Pods-SXT项目.debug.xcconfig"; sourceTree = "<group>"; };
 		C181B0641C9D38E25E6FD223 /* Pods-SXT项目.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SXT项目.release.xcconfig"; path = "Pods/Target Support Files/Pods-SXT项目/Pods-SXT项目.release.xcconfig"; sourceTree = "<group>"; };
 		EA60B1A4779D6FC805822894 /* libPods-SXT项目.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SXT项目.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -321,12 +329,16 @@
 		04CCB4EA1D18E1C200C77A96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0458FFC71D124BBF0001BFED /* ZHMeViewController.h */,
-				0458FFC81D124BBF0001BFED /* ZHMeViewController.m */,
+				04CCB6791D1A378200C77A96 /* ZHMineViewController.h */,
+				04CCB67A1D1A378200C77A96 /* ZHMineViewController.m */,
 				04CCB66A1D197C1800C77A96 /* ZHregisterVC.h */,
 				04CCB66B1D197C1800C77A96 /* ZHregisterVC.m */,
 				04CCB66D1D197F0500C77A96 /* ZHLonginVC.h */,
 				04CCB66E1D197F0500C77A96 /* ZHLonginVC.m */,
+				04CCB67C1D1A38F600C77A96 /* ZHLoginRequestVC.h */,
+				04CCB67D1D1A38F600C77A96 /* ZHLoginRequestVC.m */,
+				04CCB67F1D1A85BA00C77A96 /* ZHTestPhoneNum.h */,
+				04CCB6801D1A85BA00C77A96 /* ZHTestPhoneNum.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -359,6 +371,7 @@
 				0458FE1E1D1235CF0001BFED /* Supporting Files */,
 				041859E21D1279CC006F670F /* PrefixHeader.pch */,
 				0458FFC21D123C6C0001BFED /* TabBar List.plist */,
+				047E55AE1D1AE18700352D27 /* 牛.jpg */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -610,6 +623,7 @@
 				04CCB5D01D1924BD00C77A96 /* UMShareEditViewController.xib in Resources */,
 				04CCB5CB1D1924BD00C77A96 /* UMSocialLocalizable.strings in Resources */,
 				04CCB5D31D1924BD00C77A96 /* UMSnsAccountViewController.xib in Resources */,
+				047E55AF1D1AE18700352D27 /* 牛.jpg in Resources */,
 				04CCB6651D193EE300C77A96 /* README.txt in Resources */,
 				04CCB5D51D1924BD00C77A96 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				04CCB4F51D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png in Resources */,
@@ -699,9 +713,11 @@
 				0458FFD21D124C0E0001BFED /* ZHCategoryViewController.m in Sources */,
 				0458FE2C1D1235CF0001BFED /* SXT__.xcdatamodeld in Sources */,
 				04CCB66C1D197C1800C77A96 /* ZHregisterVC.m in Sources */,
+				04CCB6811D1A85BA00C77A96 /* ZHTestPhoneNum.m in Sources */,
 				0458FFCC1D124BE10001BFED /* ZHCartViewController.m in Sources */,
 				04CCB6751D1A2D6100C77A96 /* ZHBaseViewController.m in Sources */,
-				0458FFC91D124BBF0001BFED /* ZHMeViewController.m in Sources */,
+				04CCB67E1D1A38F600C77A96 /* ZHLoginRequestVC.m in Sources */,
+				04CCB67B1D1A378200C77A96 /* ZHMineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

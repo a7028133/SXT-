@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ZHLonginVC : UIViewController
+typedef void(^LoginReturn)(void);
+@property (nonatomic ,copy)LoginReturn block ;
 
 @end
