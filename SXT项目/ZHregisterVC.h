@@ -1,13 +1,13 @@
 //
-//  ZHregisterVC.h
+//  ZHRegisterVC.h
 //  SXT项目
 //
-//  Created by ma c on 16/6/21.
+//  Created by ma c on 16/6/26.
 //  Copyright © 2016年 阿里巴巴. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZHBaseViewController.h"
 
-@interface ZHregisterVC : UIViewController
+@interface ZHRegisterVC : ZHBaseViewController
 
 @end

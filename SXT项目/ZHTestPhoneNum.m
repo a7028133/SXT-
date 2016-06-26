@@ -13,8 +13,8 @@
 @property(nonatomic,strong)UILabel *doubleLab;
 @property(nonatomic,strong)UITextField *text;
 
-@property(nonatomic,strong)UILabel *marginLab;
-@property(nonatomic,strong)UIButton *testBtn;
+@property(nonatomic,strong)UILabel *marginLab;  //发送验证码按钮左边的竖线
+@property(nonatomic,strong)UIButton *testBtn;   //发送验证码按钮
 @property(nonatomic,strong)UIButton *registBtn;
 @property(nonatomic,strong)UIButton *resendBtn;
 @end
@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:RBG(245, 245, 245)];
+    self.navigationItem.title = @"验证手机号";
     
     [self.view addSubview:self.tipLab];
     [self.view addSubview:self.doubleLab];
@@ -58,7 +59,53 @@
         make.right.mas_equalTo(weakSelf.view.mas_right).offset(-15);
         make.bottom.mas_equalTo(weakSelf.doubleLab.mas_bottom).offset(-1);
     }];
+    
+    [self.marginLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.doubleLab.mas_top).offset(10*PIX);
+        make.right.mas_equalTo(weakSelf.view.mas_right).offset(-205*PIX);
+        make.width.mas_equalTo(1*PIX);
+        make.bottom.mas_equalTo(weakSelf.doubleLab.mas_bottom).offset(-10*PIX);
+    }];
+    
+    [self.testBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.doubleLab.mas_top);
+        make.right.mas_equalTo(weakSelf.view.mas_right);
+        make.width.mas_equalTo(205*PIX);
+        make.bottom.mas_equalTo(weakSelf.doubleLab.mas_bottom);
+    }];
+    
+    [self.registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.doubleLab.mas_bottom).offset(32*PIX);
+        make.right.mas_equalTo(weakSelf.view.mas_right).offset(-32*PIX);
+        make.left.mas_equalTo(weakSelf.view.mas_left).offset(32*PIX);
+        make.height.mas_equalTo(86*PIX);
+    }];
+    
+    [self.resendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.registBtn.mas_bottom).offset(44*PIX);
+        make.width.mas_equalTo(7*17*2+12*PIX);
+        make.centerX.mas_equalTo(weakSelf.registBtn.mas_centerX);
+        make.height.mas_equalTo(35*PIX);
+    }];
 }
+
+#pragma mark 自定义事件
+-(void)testBtnAction
+{
+    
+}
+
+-(void)registBtnAction
+{
+    
+}
+
+-(void)resendBtnAction
+{
+    
+}
+
+#pragma mark 懒加载
 
 -(UILabel *)tipLab
 {
@@ -68,9 +115,8 @@
         _tipLab.textColor = [UIColor grayColor];
         
         NSMutableAttributedString *noteStr = [[NSMutableAttributedString alloc] initWithString:@"验证码已发送到+86"];
-        NSRange redRange = NSMakeRange([[noteStr string] rangeOfString:@"+86"].location, [[noteStr string] rangeOfString:@"+86"].length);
+        NSRange redRange = NSMakeRange([[noteStr string]rangeOfString:@"+86"].location, [[noteStr string] rangeOfString:@"+86"].length);
         [noteStr addAttribute:NSForegroundColorAttributeName value:RBG(40, 181, 244) range:redRange];
-        
         [_tipLab setAttributedText:noteStr];
         [_tipLab sizeToFit];
     }
@@ -104,6 +150,7 @@
 {
     if (!_marginLab) {
         _marginLab = [[UILabel alloc]init];
+        _marginLab.backgroundColor = [UIColor grayColor];
     }
     return _marginLab;
 }
@@ -111,8 +158,11 @@
 -(UIButton *)testBtn
 {
     if (!_testBtn) {
-        _testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _testBtn = [[UIButton alloc]init];
+        [_testBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
+        [_testBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_testBtn addTarget:self action:@selector(testBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _testBtn;
 }
@@ -120,11 +170,12 @@
 -(UIButton *)registBtn
 {
     if (!_registBtn) {
-        _registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _registBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _registBtn = [[UIButton alloc]init];
-        _registBtn.titleLabel.text = @"注册";
-        _registBtn.tintColor = [UIColor grayColor];
-        _registBtn.backgroundColor = [UIColor lightGrayColor];
+        [_registBtn setTitle:@"注册" forState:UIControlStateNormal];
+        [_registBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        _registBtn.backgroundColor = RBG(234, 234, 234);
+        [_registBtn addTarget:self action:@selector(registBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registBtn;
 }
@@ -132,10 +183,11 @@
 -(UIButton *)resendBtn
 {
     if (!_resendBtn) {
-        _resendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _resendBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _resendBtn = [[UIButton alloc]init];
-        _resendBtn.titleLabel.text = @"重新发送验证码";
-        _resendBtn.tintColor = [UIColor grayColor];
+        [_resendBtn setTitle:@"重新发送验证码" forState:UIControlStateNormal];
+        [_resendBtn setTitleColor:RBG(204, 204, 204) forState:UIControlStateNormal];
+        [_registBtn addTarget:self action:@selector(resendBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _resendBtn;
 }

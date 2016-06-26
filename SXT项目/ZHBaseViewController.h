@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ZHBaseViewController : UIViewController
-typedef void (^SecussBlock)(id );
+typedef void (^SecussBlock)(id responseObject);
 typedef void (^FailBlock)(NSError *error);
 
 +(void)requestGETWithURL:(NSString *)url

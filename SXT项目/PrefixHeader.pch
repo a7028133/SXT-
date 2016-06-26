@@ -18,6 +18,7 @@
 //颜色
 #define RBG(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 
-#import "Masonry.h"
+#import "Masonry.h" 
 
+#define PIX   (1 / [UIScreen mainScreen].scale) //一个像素点的宏
 #endif /* PrefixHeader_pch */

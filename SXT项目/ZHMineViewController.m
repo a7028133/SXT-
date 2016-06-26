@@ -9,7 +9,7 @@
 #import "ZHMineViewController.h"
 #import "MAsonry.h"
 #import "ZHTableViewCell.h"
-#import "ZHregisterVC.h"
+#import "ZHRegisterVC.h"
 #import "ZHLonginVC.h"
 
 @interface ZHMineViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -194,7 +194,7 @@
         self.registBtn.alpha=1.0;
     }];
     
-    ZHregisterVC *reVC = [[ZHregisterVC alloc]init];
+    ZHRegisterVC *reVC = [[ZHRegisterVC alloc]init];
     [self.navigationController pushViewController:reVC animated:YES];
 }
 

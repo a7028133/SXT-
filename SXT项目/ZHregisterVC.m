@@ -11,7 +11,7 @@
 #import "UMSocial.h"
 #import "ZHTestPhoneNum.h"
 
-@interface ZHregisterVC()
+@interface ZHRegisterVC()
 @property(nonatomic,strong)UILabel *backLael;
 @property(nonatomic,strong)UITextField *nameText;
 @property(nonatomic,strong)UITextField *passText;
@@ -30,7 +30,7 @@
 @end
 
 
-@implementation ZHregisterVC
+@implementation ZHRegisterVC
 
 -(void)viewDidLoad
 {
@@ -161,8 +161,32 @@
 
 -(void)nextBtnAction
 {
-    ZHTestPhoneNum *testPhoneVC = [[ZHTestPhoneNum alloc]init];
-    [self.navigationController pushViewController:testPhoneVC animated:YES];
+    if([self.nameText.text isEqualToString:@""]||[self.passText.text isEqualToString:@""])
+    {
+        
+    }
+    else
+    {
+        NSString *url = @"http://123.57.141.249:8080/beautalk/appMember/createCode.do";
+//        NSString *url = [NSString stringWithFormat:@"%@MemberId=%@",str,self.nameText];
+        NSDictionary *dic = @{
+                              @"MemberId":self.nameText.text
+                              };
+        [ZHRegisterVC requestPOSTWithURL:url withParams:dic withSucess:^(id responseObject) {
+            NSLog(@"验证码请求:%@",responseObject);
+            
+            
+            ZHTestPhoneNum *testPhoneVC = [[ZHTestPhoneNum alloc]init];
+            [self.navigationController pushViewController:testPhoneVC animated:YES];
+        } withFail:^(NSError *error) {
+            if(error)
+                NSLog(@"error:%@",error.localizedDescription);
+        }];
+        
+        
+    }
+    
+    
 }
 
 -(void)loginBtnAction

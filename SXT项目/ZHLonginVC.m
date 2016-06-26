@@ -7,7 +7,7 @@
 //
 
 #import "ZHLonginVC.h"
-#import "ZHregisterVC.h"
+#import "ZHRegisterVC.h"
 #import "ZHLoginRequestVC.h"
 #import "ZHTestPhoneNum.h"
 #import "ZHMineViewController.h"
@@ -28,6 +28,7 @@
 @property(nonatomic,strong)UIButton *QQBtn;
 @property(nonatomic,strong)UIButton *weixinBtn;
 @property(nonatomic,strong)UIButton *xinlangBtn;
+@property (nonatomic,strong) UIAlertView *alertView;    //登陆账号密码错误，显示的警告栏
 @end
 
 @implementation ZHLonginVC
@@ -150,7 +151,7 @@
 //去注册按钮事件
 -(void)registerBtnAction
 {
-    ZHregisterVC *reVC = [[ZHregisterVC alloc]init];
+    ZHRegisterVC *reVC = [[ZHRegisterVC alloc]init];
     [self.navigationController pushViewController:reVC animated:YES];
 }
 
@@ -166,35 +167,23 @@
     __weak typeof (self) weakSelf = self;
     [ZHLoginRequestVC requestGETWithURL:strURL withParams:nil withSucess:^(NSDictionary *dic) {
         NSLog(@"%@",dic);
-        
-//
-        [[NSUserDefaults standardUserDefaults]setObject:dic[@"ErrorMessage"] forKey:@"ErrorMessage"];
-        [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberId"] forKey:@"MemberId"];
-        [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberLvl"] forKey:@"MemberLvl"];
-        [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberName"] forKey:@"MemberName"];
-        [[NSUserDefaults standardUserDefaults]setObject:dic[@"result"] forKey:@"result"];
-//        if (_loginReturn) {
-//            _loginReturn();
-//        }
-        
-        //取
-//        NSString *str = [[NSUserDefaults standardUserDefaults]objectForKey:@"ErrorMessage"];
-        NSArray * array  =    weakSelf.navigationController.viewControllers ;
-        NSLog(@"%@" ,array[0]) ;
-//        for (UIViewController * vc  in array) {
-//            
-//           if (  [NSStringFromClass(vc) isEqualToString:@"ZHMineViewController"] )
-//           {
-//               NSLog(@"%@" ,vc) ;
-//           }
-//            
-//        }
-        //请求完数据，跳回到我的界面
-//        ZHMineViewController *vc = [[ZHMineViewController alloc]init];
-      //  [self.navigationController pop];
-        self.block() ;
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-        
+        if (![dic[@"result"]isEqualToString:@"error"]) {
+            [[NSUserDefaults standardUserDefaults]setObject:dic[@"ErrorMessage"] forKey:@"ErrorMessage"];
+            [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberId"] forKey:@"MemberId"];
+            [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberLvl"] forKey:@"MemberLvl"];
+            [[NSUserDefaults standardUserDefaults]setObject:dic[@"MemberName"] forKey:@"MemberName"];
+            [[NSUserDefaults standardUserDefaults]setObject:dic[@"result"] forKey:@"result"];
+            
+            //NSArray * array = weakSelf.navigationController.viewControllers ;
+            //NSLog(@"%@" ,array[0]) ;
+            //回调到我的界面，刷新tableView
+            self.block() ;
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
+        else
+        {
+            [self.alertView show];
+        }
     } withFail:^(NSError *error) {
         if(error)
         {
@@ -331,5 +320,13 @@
     return _xinlangBtn;
 }
 
+-(UIAlertView *)alertView
+{
+    if (!_alertView) {
+        _alertView = [[UIAlertView alloc]initWithTitle:@"账号密码错误" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+//        _alertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    }
+    return _alertView;
+}
 
 @end
