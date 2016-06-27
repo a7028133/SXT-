@@ -7,126 +7,163 @@
 //
 
 #import "ZHLeftTableViewCell.h"
+#import "UIImageView+WebCache.h"
+#import "NSAttributedString+ZHTool.h"
+
 @interface ZHLeftTableViewCell ()
-@property(nonatomic,strong)UIImageView *goodsImageView;
-@property(nonatomic,strong)UIImageView *countryImageView;
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UILabel *priceLab;
-@property(nonatomic,strong)UIButton *buyBtn;
+@property (strong, nonatomic)   UIImageView *goodsImage;          /** 商品图片 */
+@property (strong, nonatomic)   UIImageView *countryImage;        /** 国旗 */
+@property (strong, nonatomic)   UILabel *titleLabel;              /** 显示标题label */
+@property (strong, nonatomic)   UILabel *priceLabel;              /** 显示价格label */
+@property (strong, nonatomic)   UIButton *buyCarButton;           /** 购物车button */
+@property (strong, nonatomic)   UILabel *lineLabel;               /** 分割线label */
+@property (strong, nonatomic)   UILabel *contentLabel;            /** 内容Label */
 @end
 
 @implementation ZHLeftTableViewCell
--(instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame ];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
     if (self) {
-        [self addSubview:self.goodsImageView];
-        [self addSubview:self.countryImageView];
-        [self addSubview:self.titleLab];
-        [self addSubview:self.priceLab];
-        [self addSubview:self.buyBtn];
+        [self addSubview:self.goodsImage];
+        self.goodsImage.backgroundColor = [UIColor blueColor];
+        [self addSubview:self.countryImage];
+        self.countryImage.backgroundColor = [UIColor grayColor];
+        [self addSubview:self.titleLabel];
+        [self addSubview:self.contentLabel];
+        [self addSubview:self.priceLabel];
+        [self addSubview:self.buyCarButton];
+        [self addSubview:self.lineLabel];
     }
+    
     return self;
 }
 
-+(void)cellintable:(UITableView *)table withIndexPath:(NSIndexPath *)index withDic:(NSDictionary *)dic
-{
-    static NSString *ID = @"ID";
-    ZHLeftTableViewCell *cell = [table dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[ZHLeftTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        cell.goodsImageView = dic[@""];
-        cell.countryImageView = dic[@""];
-        cell.titleLab = dic[@""];
-        cell.priceLab = dic[@""];
-        cell.buyBtn = dic[@""];
+- (void)layoutSubviews{
+    __weak typeof(self) weakSelf = self;
+    [_goodsImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(142);
+        make.height.mas_equalTo(142);
+        make.left.equalTo(weakSelf.mas_left).offset(10);
+        make.top.equalTo(weakSelf.mas_top).offset(12);
+    }];
+    
+    [_countryImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.goodsImage.mas_top).offset(10);
+        make.left.equalTo(weakSelf.goodsImage.mas_left).offset(10);
+        make.width.mas_equalTo(25);
+        make.height.mas_equalTo(20);
+    }];
+    
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.goodsImage.mas_right).offset(10);
+        make.top.equalTo(weakSelf.mas_top).offset(25);
+        make.right.equalTo(weakSelf.mas_right).offset(-17);
+        make.height.mas_equalTo(15);
+    }];
+    
+    [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.titleLabel.mas_bottom);
+        make.height.mas_equalTo(60);
+        make.right.equalTo(weakSelf.mas_right).offset(-17);
+        make.left.equalTo(weakSelf.goodsImage.mas_right).offset(10);
+    }];
+    
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(17);
+        make.left.equalTo(weakSelf.goodsImage.mas_right).offset(10);
+        make.bottom.equalTo(weakSelf.mas_bottom).offset(-27);
+        make.right.equalTo(weakSelf.mas_right).offset(-17);//
+    }];
+    
+    [_buyCarButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.mas_right).offset(-45);
+        make.bottom.equalTo(weakSelf.mas_bottom).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(35, 35));
+    }];
+    
+    [_lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.mas_top).offset(1);
+        make.left.equalTo(weakSelf.mas_left);
+        make.right.equalTo(weakSelf.mas_right);
+        make.height.mas_equalTo(1);
+    }];
+}
+
+- (void)setSingleList:(ZHLeftTableViewModel *)singleList{
+    NSURL *url1 = [NSURL URLWithString:singleList.imgView];
+    NSURL *url2 = [NSURL URLWithString:singleList.countryImg];
+    [self.goodsImage sd_setImageWithURL:url1 placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    [self.countryImage sd_setImageWithURL:url2 placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    _titleLabel.text = singleList.title;
+    _contentLabel.text = singleList.goodsIntro;
+    _priceLabel.attributedText = [NSMutableAttributedString mixTwoAttributedStrings:singleList.domesticPrice withString:singleList.price];
+    
+    
+    //调用"NSMutableAttributedString+Helper.h"类别来简化cell中的代码，方便在后面两个界面的重用
+//    _priceLabel.attributedText = [NSMutableAttributedString makeStrikethroughAttributedString:singleList.domesticPrice :singleList.price rebateString:nil];
+}
+
+
+
+- (UIImageView *)goodsImage{
+    if (!_goodsImage) {
+        _goodsImage = [[UIImageView alloc]init];
     }
+    return _goodsImage;
 }
 
-
--(void)layoutSubviews
-{
-    __weak typeof(self)weakSelf = self;
-    [self.goodsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.mas_top).offset(33*PIX);
-        make.left.mas_equalTo(weakSelf.mas_left).offset(10*PIX);
-        make.width.mas_equalTo(284*PIX);
-        make.bottom.mas_equalTo(weakSelf.mas_bottom).offset(-33*PIX);
-    }];
-    
-    [self.countryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.goodsImageView.mas_top).offset(33*PIX);
-        make.left.mas_equalTo(weakSelf.goodsImageView.mas_left).offset(33*PIX);
-        make.width.mas_equalTo(50*PIX);
-        make.height.mas_equalTo(40*PIX);
-    }];
-    
-    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.mas_top).offset(50*PIX);
-        make.left.mas_equalTo(weakSelf.goodsImageView.mas_right).offset(12*PIX);
-        make.right.mas_equalTo(weakSelf.mas_right).offset(34*PIX);
-        make.height.mas_equalTo(158*PIX);
-    }];
-    
-    [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.titleLab.mas_top).offset(52*PIX);
-        make.left.mas_equalTo(weakSelf.goodsImageView.mas_right).offset(12*PIX);
-        make.width.mas_equalTo(174*PIX);
-        make.bottom.mas_equalTo(weakSelf.mas_bottom).offset(-57*PIX);
-    }];
-    
-    [self.buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(weakSelf.titleLab.mas_top).offset(28*PIX);
-        make.right.mas_equalTo(weakSelf.goodsImageView.mas_right).offset(-89*PIX);
-        make.width.mas_equalTo(70*PIX);
-        make.bottom.mas_equalTo(weakSelf.mas_bottom).offset(-39*PIX);
-    }];
-    
-}
-
-#pragma mark
-#pragma mark 懒加载
--(UIImageView *)goodsImageView
-{
-    if (!_goodsImageView) {
-        _goodsImageView = [[UIImageView alloc]init];
-        _goodsImageView.userInteractionEnabled =YES;
+- (UIImageView *)countryImage{
+    if (!_countryImage) {
+        _countryImage = [[UIImageView alloc]init];
     }
-    return _goodsImageView;
+    return _countryImage;
 }
 
--(UIImageView *)countryImageView
-{
-    if (!_countryImageView) {
-        _countryImageView = [[UIImageView alloc]init];
-        _countryImageView.userInteractionEnabled = YES;
+- (UILabel *)titleLabel{
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc]init];
+        _titleLabel.numberOfLines = 4;
+        _titleLabel.font = [UIFont systemFontOfSize:15.0];
     }
-    return _countryImageView;
+    return _titleLabel;
 }
 
--(UILabel *)titleLab
-{
-    if (!_titleLab) {
-        _titleLab = [[UILabel alloc]init];
+- (UILabel *)priceLabel{
+    if (!_priceLabel) {
+        _priceLabel = [[UILabel alloc]init];
+    }
+    return _priceLabel;
+}
+
+- (UIButton *)buyCarButton{
+    if (!_buyCarButton) {
+        _buyCarButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [_buyCarButton setImage:[UIImage imageNamed:@"限时特卖界面购物车图标"] forState:(UIControlStateNormal)];
         
     }
-    return _titleLab;
+    return _buyCarButton;
 }
 
--(UILabel *)priceLab
-{
-    if (!_priceLab) {
-        _priceLab = [[UILabel alloc]init];
+- (UILabel *)contentLabel{
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc]init];
+        _contentLabel.numberOfLines = 0;
+        _contentLabel.font = [UIFont systemFontOfSize:15.0];
+        _contentLabel.textAlignment = NSTextAlignmentLeft;
     }
-    return _priceLab;
+    return _contentLabel;
 }
--(UIButton *)buyBtn
-{
-    if (!_buyBtn) {
-        _buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _buyBtn = [[UIButton alloc]init];
+- (UILabel *)lineLabel{
+    if (!_lineLabel) {
+        _lineLabel = [[UILabel alloc]init];
+        _lineLabel.backgroundColor = RBG(245, 245, 245);
     }
-    return _buyBtn;
+    return _lineLabel;
 }
-
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
 @end

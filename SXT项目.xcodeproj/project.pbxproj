@@ -19,11 +19,13 @@
 		0458FFD21D124C0E0001BFED /* ZHCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0458FFD11D124C0E0001BFED /* ZHCategoryViewController.m */; };
 		047E55C21D1B923500352D27 /* ZHCycleModelRequestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E55C11D1B923500352D27 /* ZHCycleModelRequestVC.m */; };
 		047E55C41D1BCE4900352D27 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047E55C31D1BCE4900352D27 /* placeholder@2x.png */; };
-		048875791D1CDAA5007E2CC3 /* ZHDoubleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048875781D1CDAA5007E2CC3 /* ZHDoubleTableView.m */; };
 		0488757C1D1D1223007E2CC3 /* ZHLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0488757B1D1D1223007E2CC3 /* ZHLeftTableViewCell.m */; };
 		0488757F1D1D123E007E2CC3 /* ZHRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0488757E1D1D123E007E2CC3 /* ZHRightTableViewCell.m */; };
 		048875821D1D1F7B007E2CC3 /* ZHLeftTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048875801D1D1F7B007E2CC3 /* ZHLeftTableViewModel.m */; };
 		048875E11D1FCA04007E2CC3 /* ZHRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048875E01D1FCA04007E2CC3 /* ZHRegisterVC.m */; };
+		048875E41D20174D007E2CC3 /* ZHBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048875E31D20174D007E2CC3 /* ZHBaseTableView.m */; };
+		048875E71D20B626007E2CC3 /* ZHRightTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048875E51D20B626007E2CC3 /* ZHRightTableViewModel.m */; };
+		048875EA1D21220E007E2CC3 /* NSAttributedString+ZHTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 048875E91D21220E007E2CC3 /* NSAttributedString+ZHTool.m */; };
 		04CCB4F01D18EAAF00C77A96 /* ZHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */; };
 		04CCB4F51D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */; };
 		04CCB5CB1D1924BD00C77A96 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04CCB4FA1D1924BB00C77A96 /* UMSocialLocalizable.strings */; };
@@ -107,8 +109,6 @@
 		047E55C01D1B923500352D27 /* ZHCycleModelRequestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCycleModelRequestVC.h; sourceTree = "<group>"; };
 		047E55C11D1B923500352D27 /* ZHCycleModelRequestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCycleModelRequestVC.m; sourceTree = "<group>"; };
 		047E55C31D1BCE4900352D27 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
-		048875771D1CDAA5007E2CC3 /* ZHDoubleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHDoubleTableView.h; sourceTree = "<group>"; };
-		048875781D1CDAA5007E2CC3 /* ZHDoubleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHDoubleTableView.m; sourceTree = "<group>"; };
 		0488757A1D1D1223007E2CC3 /* ZHLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLeftTableViewCell.h; sourceTree = "<group>"; };
 		0488757B1D1D1223007E2CC3 /* ZHLeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLeftTableViewCell.m; sourceTree = "<group>"; };
 		0488757D1D1D123E007E2CC3 /* ZHRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHRightTableViewCell.h; sourceTree = "<group>"; };
@@ -117,6 +117,12 @@
 		048875811D1D1F7B007E2CC3 /* ZHLeftTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLeftTableViewModel.h; sourceTree = "<group>"; };
 		048875DF1D1FCA04007E2CC3 /* ZHRegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHRegisterVC.h; sourceTree = "<group>"; };
 		048875E01D1FCA04007E2CC3 /* ZHRegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHRegisterVC.m; sourceTree = "<group>"; };
+		048875E21D20174D007E2CC3 /* ZHBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBaseTableView.h; sourceTree = "<group>"; };
+		048875E31D20174D007E2CC3 /* ZHBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBaseTableView.m; sourceTree = "<group>"; };
+		048875E51D20B626007E2CC3 /* ZHRightTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHRightTableViewModel.m; sourceTree = "<group>"; };
+		048875E61D20B626007E2CC3 /* ZHRightTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHRightTableViewModel.h; sourceTree = "<group>"; };
+		048875E81D21220E007E2CC3 /* NSAttributedString+ZHTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+ZHTool.h"; sourceTree = "<group>"; };
+		048875E91D21220E007E2CC3 /* NSAttributedString+ZHTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+ZHTool.m"; sourceTree = "<group>"; };
 		04CCB4EE1D18EAAF00C77A96 /* ZHTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTableViewCell.h; sourceTree = "<group>"; };
 		04CCB4EF1D18EAAF00C77A96 /* ZHTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTableViewCell.m; sourceTree = "<group>"; };
 		04CCB4F41D19114100C77A96 /* 屏幕快照 2016-06-21 下午2.06.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "屏幕快照 2016-06-21 下午2.06.44.png"; sourceTree = "<group>"; };
@@ -318,8 +324,8 @@
 		047E55B51D1B8E7000352D27 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				048875771D1CDAA5007E2CC3 /* ZHDoubleTableView.h */,
-				048875781D1CDAA5007E2CC3 /* ZHDoubleTableView.m */,
+				048875E21D20174D007E2CC3 /* ZHBaseTableView.h */,
+				048875E31D20174D007E2CC3 /* ZHBaseTableView.m */,
 				0488757A1D1D1223007E2CC3 /* ZHLeftTableViewCell.h */,
 				0488757B1D1D1223007E2CC3 /* ZHLeftTableViewCell.m */,
 				0488757D1D1D123E007E2CC3 /* ZHRightTableViewCell.h */,
@@ -333,6 +339,8 @@
 			children = (
 				048875811D1D1F7B007E2CC3 /* ZHLeftTableViewModel.h */,
 				048875801D1D1F7B007E2CC3 /* ZHLeftTableViewModel.m */,
+				048875E61D20B626007E2CC3 /* ZHRightTableViewModel.h */,
+				048875E51D20B626007E2CC3 /* ZHRightTableViewModel.m */,
 			);
 			name = SaleModel;
 			sourceTree = "<group>";
@@ -418,6 +426,8 @@
 				04CCB6741D1A2D6100C77A96 /* ZHBaseViewController.m */,
 				0458FFC41D1244640001BFED /* ZHBaseTabBarController.h */,
 				0458FFC51D1244640001BFED /* ZHBaseTabBarController.m */,
+				048875E81D21220E007E2CC3 /* NSAttributedString+ZHTool.h */,
+				048875E91D21220E007E2CC3 /* NSAttributedString+ZHTool.m */,
 				0458FE1E1D1235CF0001BFED /* Supporting Files */,
 				041859E21D1279CC006F670F /* PrefixHeader.pch */,
 				0458FFC21D123C6C0001BFED /* TabBar List.plist */,
@@ -754,14 +764,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0488757F1D1D123E007E2CC3 /* ZHRightTableViewCell.m in Sources */,
+				048875E41D20174D007E2CC3 /* ZHBaseTableView.m in Sources */,
 				0458FFC61D1244640001BFED /* ZHBaseTabBarController.m in Sources */,
 				04CCB4F01D18EAAF00C77A96 /* ZHTableViewCell.m in Sources */,
 				0458FE231D1235CF0001BFED /* AppDelegate.m in Sources */,
 				0458FE201D1235CF0001BFED /* main.m in Sources */,
 				04CCB66F1D197F0500C77A96 /* ZHLonginVC.m in Sources */,
+				048875EA1D21220E007E2CC3 /* NSAttributedString+ZHTool.m in Sources */,
 				04CCB6781D1A2E4000C77A96 /* ZHSaleVC.m in Sources */,
 				047E55C21D1B923500352D27 /* ZHCycleModelRequestVC.m in Sources */,
 				0458FFD21D124C0E0001BFED /* ZHCategoryViewController.m in Sources */,
+				048875E71D20B626007E2CC3 /* ZHRightTableViewModel.m in Sources */,
 				0458FE2C1D1235CF0001BFED /* SXT__.xcdatamodeld in Sources */,
 				048875E11D1FCA04007E2CC3 /* ZHRegisterVC.m in Sources */,
 				04CCB6811D1A85BA00C77A96 /* ZHTestPhoneNum.m in Sources */,
@@ -769,7 +782,6 @@
 				0488757C1D1D1223007E2CC3 /* ZHLeftTableViewCell.m in Sources */,
 				04CCB6751D1A2D6100C77A96 /* ZHBaseViewController.m in Sources */,
 				04CCB67E1D1A38F600C77A96 /* ZHLoginRequestVC.m in Sources */,
-				048875791D1CDAA5007E2CC3 /* ZHDoubleTableView.m in Sources */,
 				048875821D1D1F7B007E2CC3 /* ZHLeftTableViewModel.m in Sources */,
 				04CCB67B1D1A378200C77A96 /* ZHMineViewController.m in Sources */,
 			);

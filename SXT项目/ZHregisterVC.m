@@ -27,6 +27,7 @@
 @property(nonatomic,strong)UIButton *xinlangBtn;
 
 @property(nonatomic,strong)UILabel *topFlag;
+@property (nonatomic,strong) UIAlertController *alertVC;    //账户已经注册
 @end
 
 
@@ -168,23 +169,29 @@
     else
     {
         NSString *url = @"http://123.57.141.249:8080/beautalk/appMember/createCode.do";
-//        NSString *url = [NSString stringWithFormat:@"%@MemberId=%@",str,self.nameText];
         NSDictionary *dic = @{
                               @"MemberId":self.nameText.text
                               };
         [ZHRegisterVC requestPOSTWithURL:url withParams:dic withSucess:^(id responseObject) {
             NSLog(@"验证码请求:%@",responseObject);
+            if (![responseObject[@"result"]isEqualToString:@"TelephoneExistError"]) {
+                ZHTestPhoneNum *testPhoneVC = [[ZHTestPhoneNum alloc]init];
+                testPhoneVC.nameText = self.nameText.text;
+                testPhoneVC.passText = self.passText.text;
+                [self.navigationController pushViewController:testPhoneVC animated:YES];
+            }
+            else
+            {
+                [self presentViewController:self.alertVC animated:YES completion:^{
+                }];
+            }
             
-            
-            ZHTestPhoneNum *testPhoneVC = [[ZHTestPhoneNum alloc]init];
-            [self.navigationController pushViewController:testPhoneVC animated:YES];
         } withFail:^(NSError *error) {
             if(error)
                 NSLog(@"error:%@",error.localizedDescription);
         }];
-        
-        
     }
+    
     
     
 }
@@ -205,7 +212,7 @@
         
         if (response.responseCode == UMSResponseCodeSuccess) {
             
-            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
+//            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
             NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
             
@@ -348,6 +355,23 @@
         _topFlag.textAlignment = NSTextAlignmentCenter ;
     }
     return _topFlag;
+}
+
+-(UIAlertController *)alertVC
+{
+    if (!_alertVC) {
+        _alertVC = [UIAlertController alertControllerWithTitle:@"注意" message:@"该账户已经被注册" preferredStyle:UIAlertControllerStyleAlert];
+        
+        //事件
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
+                                 {
+                                     NSLog(@"这个按钮被点击");
+                                 }];
+        
+        //给alertController 添加action
+        [_alertVC addAction:action];
+    }
+    return _alertVC;
 }
 
 @end

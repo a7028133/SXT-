@@ -9,5 +9,6 @@
 #import "ZHBaseViewController.h"
 
 @interface ZHTestPhoneNum : ZHBaseViewController
-
+@property(nonatomic,strong)NSString *nameText;
+@property(nonatomic,strong)NSString *passText;
 @end

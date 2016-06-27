@@ -17,6 +17,7 @@
 @property(nonatomic,strong)UIButton *testBtn;   //发送验证码按钮
 @property(nonatomic,strong)UIButton *registBtn;
 @property(nonatomic,strong)UIButton *resendBtn;
+@property(nonatomic,strong)UILabel *sucLab;  //注册成功后的提示语
 @end
 
 @implementation ZHTestPhoneNum
@@ -34,6 +35,8 @@
     [self.view addSubview:self.testBtn];
     [self.view addSubview:self.registBtn];
     [self.view addSubview:self.resendBtn];
+    [self.view addSubview:self.sucLab];
+    self.sucLab.hidden = YES;
 }
 
 -(void)viewWillLayoutSubviews
@@ -87,21 +90,114 @@
         make.centerX.mas_equalTo(weakSelf.registBtn.mas_centerX);
         make.height.mas_equalTo(35*PIX);
     }];
+    
+    [self.sucLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(18*PIX);
+        make.width.mas_equalTo(4*17*2+12*PIX);
+        make.centerX.mas_equalTo(weakSelf.view.mas_centerX);
+        make.centerY.mas_equalTo(weakSelf.view.mas_centerY);
+    }];
 }
 
 #pragma mark 自定义事件
+-(instancetype)init
+{
+    self = [super init];
+    [self startTime];
+    return self;
+}
+
 -(void)testBtnAction
 {
-    
+    [self startTime];
+    NSString *url = @"http://123.57.141.249:8080/beautalk/appMember/createCode.do";
+            NSDictionary *dic = @{
+                                  @"MemberId":self.nameText
+                                  };
+            [ZHTestPhoneNum requestPOSTWithURL:url withParams:dic withSucess:^(id responseObject) {
+                NSLog(@"验证码请求:%@",responseObject);
+            } withFail:^(NSError *error) {
+                if(error)
+                    NSLog(@"error:%@",error.localizedDescription);
+            }];
 }
 
 -(void)registBtnAction
 {
+    self.registBtn.alpha = 0.1;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.registBtn.alpha = 1;
+    }];
     
+    if (![self.text.text isEqualToString:@""]) {
+        NSString *url  = @"http://123.57.141.249:8080/beautalk/appMember/appRegistration.do";
+        NSDictionary *dic =@{
+                             @"LoginName":self.nameText,
+                             @"Lpassword":self.passText,
+                             @"Code":self.text.text,
+                             @"Telephone":self.nameText
+                             };
+        [ZHTestPhoneNum requestGETWithURL:url withParams:dic withSucess:^(id responseObject) {
+            NSLog(@"点击注册后返回的数据%@",responseObject);
+            [UIView animateWithDuration:0.5 animations:^{
+                self.sucLab.hidden = YES;
+            } completion:^(BOOL finished) {
+                self.sucLab.hidden = NO;
+            }];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        } withFail:^(NSError *error) {
+            if (error) {
+                NSLog(@"error:%@",error.localizedDescription);
+            }
+        }];
+    }
 }
 
 -(void)resendBtnAction
 {
+    self.resendBtn.alpha= 0.1;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.resendBtn.alpha= 1;
+    }];
+    
+    NSString *url = @"http://123.57.141.249:8080/beautalk/appMember/createCode.do";
+    NSDictionary *dic = @{
+                          @"MemberId":self.nameText
+                          };
+    [ZHTestPhoneNum requestPOSTWithURL:url withParams:dic withSucess:^(id responseObject) {
+        
+    } withFail:^(NSError *error) {
+        if(error)
+            NSLog(@"error:%@",error.localizedDescription);
+    }];
+}
+
+-(void)startTime
+{
+    __block int timeout= 60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.testBtn setTitle:@"重发验证码" forState:UIControlStateNormal];
+                self.testBtn.userInteractionEnabled = YES;
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [UIView beginAnimations:nil context:nil];
+                [UIView setAnimationDuration:1];
+                [self.testBtn setTitle:[NSString stringWithFormat:@"%zd秒后重试",timeout] forState:UIControlStateNormal];
+                [UIView commitAnimations];
+                self.testBtn.userInteractionEnabled = NO;
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
     
 }
 
@@ -187,8 +283,22 @@
         _resendBtn = [[UIButton alloc]init];
         [_resendBtn setTitle:@"重新发送验证码" forState:UIControlStateNormal];
         [_resendBtn setTitleColor:RBG(204, 204, 204) forState:UIControlStateNormal];
-        [_registBtn addTarget:self action:@selector(resendBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_resendBtn addTarget:self action:@selector(resendBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _resendBtn;
 }
+
+-(UILabel *)sucLab
+{
+    if (!_sucLab) {
+        _sucLab = [[UILabel alloc]init];
+        _sucLab.text = @"注册成功！";
+        [_sucLab setBackgroundColor: [UIColor whiteColor]];
+        _sucLab.textColor = [UIColor grayColor];
+    }
+    return _sucLab;
+}
+
+
+
 @end

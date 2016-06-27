@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHLeftTableViewModel.h"
 
 @interface ZHLeftTableViewCell : UITableViewCell
-
+@property (strong, nonatomic)   ZHLeftTableViewModel *singleList; /** 存储数据的模型 */
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHRightTableViewModel.h"
 
 @interface ZHRightTableViewCell : UITableViewCell
-
+@property (strong, nonatomic)   ZHRightTableViewModel *groupBuyModel;    /** 存储数据的model */
 @end
