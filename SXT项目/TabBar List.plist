@@ -14,6 +14,16 @@
 	</dict>
 	<dict>
 		<key>ViewController</key>
+		<string>ZHCategoryVC</string>
+		<key>title</key>
+		<string>分类</string>
+		<key>image</key>
+		<string>菜单栏分类按钮未选中状态</string>
+		<key>selectedImage</key>
+		<string>菜单栏分类按钮选中状态</string>
+	</dict>
+	<dict>
+		<key>ViewController</key>
 		<string>ZHCartViewController</string>
 		<key>title</key>
 		<string>购物车</string>
@@ -31,16 +41,6 @@
 		<string>菜单栏我的按钮未选中状态</string>
 		<key>selectedImage</key>
 		<string>菜单栏我的按钮选中状态</string>
-	</dict>
-	<dict>
-		<key>ViewController</key>
-		<string>ZHCategoryViewController</string>
-		<key>title</key>
-		<string>分类</string>
-		<key>image</key>
-		<string>菜单栏分类按钮未选中状态</string>
-		<key>selectedImage</key>
-		<string>菜单栏分类按钮选中状态</string>
 	</dict>
 </array>
 </plist>

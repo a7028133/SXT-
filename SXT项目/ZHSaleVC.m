@@ -297,6 +297,7 @@
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _rightBtn = [[UIButton alloc]init];
+        [_rightBtn setBackgroundColor:[UIColor whiteColor]];
         [_rightBtn setFrame:CGRectMake(WIDTH/2, 230, WIDTH/2, 50)];
         NSDictionary *dic = @{
                               NSForegroundColorAttributeName: RBG(40, 181 , 244)
